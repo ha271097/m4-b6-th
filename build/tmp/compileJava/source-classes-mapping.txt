@@ -1,28 +1,28 @@
-service/CustomerService/CustomerService.java
- service.CustomerService.CustomerService
-repository/typerepo/TypeRepository.java
- repository.typerepo.TypeRepository
 service/ITypeService.java
  service.ITypeService
-service/ICustomerService.java
- service.ICustomerService
-controller/CustomerController.java
- controller.CustomerController
+repository/typerepo/TypeRepository.java
+ repository.typerepo.TypeRepository
+service/CustomerService/CustomerService.java
+ service.CustomerService.CustomerService
 repository/ICustomerRepo.java
  repository.ICustomerRepo
-repository/ITypeRepo.java
- repository.ITypeRepo
-repository/entity/Customer.java
- repository.entity.Customer
-repository/entity/TypeCustomer.java
- repository.entity.TypeCustomer
-service/typeservice/TypeService.java
- service.typeservice.TypeService
-repository/entity/CustomerUpload.java
- repository.entity.CustomerUpload
 fometter/TypeFormatter.java
  fometter.TypeFormatter
+repository/entity/TypeCustomer.java
+ repository.entity.TypeCustomer
+repository/entity/Customer.java
+ repository.entity.Customer
+service/typeservice/TypeService.java
+ service.typeservice.TypeService
+repository/ITypeRepo.java
+ repository.ITypeRepo
+service/ICustomerService.java
+ service.ICustomerService
 config/AppWeb.java
  config.AppWeb
 config/AppConfig.java
  config.AppConfig
+repository/entity/CustomerUpload.java
+ repository.entity.CustomerUpload
+controller/CustomerController.java
+ controller.CustomerController

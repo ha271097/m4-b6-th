@@ -1,6 +1,9 @@
 package controller;
 
+import org.springframework.core.env.Environment;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.multipart.MultipartFile;
 import repository.entity.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -9,19 +12,25 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+import repository.entity.CustomerUpload;
 import repository.entity.TypeCustomer;
 import service.ICustomerService;
 import service.ITypeService;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 @Controller
 @RequestMapping("/customer")
 public class CustomerController {
     @Autowired
+    Environment environment;
+
+    @Autowired
     private ICustomerService customerService;
 
-    @Value("file_upload")
+    @Value("file-upload")
     private String fileUpload;
 
     @Autowired
@@ -31,6 +40,7 @@ public class CustomerController {
     public List<TypeCustomer> typeCustomer(){
         return typeService.findAll();
     }
+
     @GetMapping("/home")
     public ModelAndView showAll(){
         ModelAndView mav = new ModelAndView("/home");
@@ -38,14 +48,28 @@ public class CustomerController {
         mav.addObject("i", fileUpload);
         return mav;
     }
+
     @GetMapping("/create")
     public ModelAndView showFromCreate(){
         ModelAndView mav = new ModelAndView("/create");
-        mav.addObject("c", new Customer());
+        mav.addObject("c", new CustomerUpload());
         return mav;
     }
+
     @PostMapping("/create")
-    public String save(Customer customer){
+    public String save(CustomerUpload customerUpload){
+        MultipartFile multipartFile = customerUpload.getImg();
+        String fileName = multipartFile.getOriginalFilename();
+        try {
+            FileCopyUtils.copy(multipartFile.getBytes(), new File(fileUpload + fileName));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Customer customer = new Customer();
+        customer.setImg(fileName);
+        customer.setFirstName(customerUpload.getFirstName());
+        customer.setLastName(customerUpload.getLastName());
+        customer.setType(customerUpload.getType());
         customerService.saveOrUpdate(customer);
         return "redirect:/customer/home";
     }

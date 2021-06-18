@@ -5,8 +5,11 @@
     <title>Create Customer</title>
 </head>
 <body>
-<h2>Create Customer</h2>
-<form method="post">
+<div>
+  <h2>Create Customer</h2>
+</div>
+<div>
+  <form method="post">
   <table>
     <tr>
       <td>FirstName</td>
@@ -20,10 +23,10 @@
       <td>Type</td>
       <td>
         <select th:field="${c.type}">
-        <th:block th:each="t: ${types}">
-          <option th:value="${t.id}" th:text="${t.name}"></option>
-        </th:block>
-      </select>
+          <th:block th:each="t: ${types}">
+            <option th:value="${t.id}" th:text="${t.name}"></option>
+          </th:block>
+        </select>
       </td>
     </tr>
     <tr>
@@ -32,6 +35,7 @@
     </tr>
   </table>
   <button type="submit">Add Customer</button>
-</form>
+  </form>
+</div>
 </body>
 </html>
