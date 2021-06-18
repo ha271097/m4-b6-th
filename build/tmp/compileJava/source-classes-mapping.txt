@@ -1,18 +1,24 @@
-IGeneralRepository/IGeneralRepository.java
- IGeneralRepository.IGeneralRepository
-model/Customer.java
- model.Customer
-config/AppWeb.java
- config.AppWeb
-IGeneralRepository/CustomerRepository/ICustomerRepository.java
- IGeneralRepository.CustomerRepository.ICustomerRepository
-service/ICustomerService.java
- service.ICustomerService
+repository/entity/Customer.java
+ repository.entity.Customer
+repository/typerepo/TypeRepository.java
+ repository.typerepo.TypeRepository
+service/ITypeService.java
+ service.ITypeService
 controller/CustomerController.java
  controller.CustomerController
-service/CustomerService.java
- service.CustomerService
-IGeneralRepository/CustomerRepository/CustomerRepository.java
- IGeneralRepository.CustomerRepository.CustomerRepository
+service/typeservice/TypeService.java
+ service.typeservice.TypeService
+repository/ICustomerRepo.java
+ repository.ICustomerRepo
+repository/ITypeRepo.java
+ repository.ITypeRepo
+service/ICustomerService.java
+ service.ICustomerService
+config/AppWeb.java
+ config.AppWeb
 config/AppConfig.java
  config.AppConfig
+service/CustomerService/CustomerService.java
+ service.CustomerService.CustomerService
+repository/entity/TypeCustomer.java
+ repository.entity.TypeCustomer

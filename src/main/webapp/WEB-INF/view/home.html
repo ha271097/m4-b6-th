@@ -7,21 +7,25 @@
 <body>
 <h2>List Customer</h2>
 <a href="/customer/create">Create Customer</a>
-<table>
+<!--<input type="text">-->
+<table border="1" cellpadding="2px">
     <tr>
         <th>ID</th>
         <th>firstName</th>
         <th>lastName</th>
+        <th>IMG</th>
         <th>Edit</th>
         <th>Delete</th>
     </tr>
-    <tr th:each="list: ${c}">
+    <tr th:each="list: ${c}" th:object="${i}">
         <td th:text="${list.id}"></td>
         <td th:text="${list.firstName}"></td>
         <td th:text="${list.lastName}"></td>
+        <td><img th:href="@{i}" + ${c.img} ></td>
         <td><a th:href="@{/customer/edit(id=${list.id})}">Edit</a></td>
         <td><a th:href="@{/customer/remove/(id=${list.id})}">Remove</a></td>
     </tr>
 </table>
+
 </body>
 </html>

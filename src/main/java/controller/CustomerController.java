@@ -1,13 +1,19 @@
 package controller;
 
-import model.Customer;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import repository.entity.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import service.ICustomerService;
+import service.ITypeService;
+
+import java.lang.reflect.Type;
+import java.util.List;
 
 @Controller
 @RequestMapping("/customer")
@@ -15,10 +21,21 @@ public class CustomerController {
     @Autowired
     private ICustomerService customerService;
 
+    @Value("file_upload")
+    private String fileUpload;
+
+    @Autowired
+    private ITypeService typeService;
+
+    @ModelAttribute("type")
+    public List<Type> typeCustomer(){
+        return typeService.findAll();
+    }
     @GetMapping("/home")
     public ModelAndView showAll(){
         ModelAndView mav = new ModelAndView("/home");
         mav.addObject("c", customerService.findAll());
+        mav.addObject("i", fileUpload);
         return mav;
     }
     @GetMapping("/create")

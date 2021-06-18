@@ -16,6 +16,16 @@
       <td>LastName</td>
       <td><input th:field="${c.lastName}"></td>
     </tr>
+    <tr>
+      <td>Type</td>
+      <td><select>
+        <option th:> </option>
+      </select></td>
+    </tr>
+    <tr>
+      <td>IMG</td>
+      <td><input type="file" th:field="${c.img}"></td>
+    </tr>
   </table>
   <button type="submit">Add Customer</button>
 </form>
