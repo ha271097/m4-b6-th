@@ -1,5 +1,6 @@
 package config;
 
+import fometter.TypeFormatter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 //import repository.customerRepository.CustomerRepository;
@@ -11,6 +12,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.format.FormatterRegistry;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
@@ -26,6 +28,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.thymeleaf.spring5.SpringTemplateEngine;
 import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring5.view.ThymeleafViewResolver;
+import repository.entity.TypeCustomer;
 import service.CustomerService.CustomerService;
 import service.ICustomerService;
 import service.ITypeService;
@@ -149,6 +152,11 @@ public class AppConfig implements WebMvcConfigurer, ApplicationContextAware {
         configurer.enable();
     }
 
+    @Override
+    public void  addFormatters(FormatterRegistry registry){
+        registry.addFormatter(
+                new TypeFormatter(applicationContext.getBean(TypeService.class)));
+    }
 
     @Bean
     public ICustomerService customerService() {

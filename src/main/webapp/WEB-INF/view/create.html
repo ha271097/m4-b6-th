@@ -18,9 +18,13 @@
     </tr>
     <tr>
       <td>Type</td>
-      <td><select>
-        <option th:> </option>
-      </select></td>
+      <td>
+        <select th:field="${c.type}">
+        <th:block th:each="t: ${types}">
+          <option th:value="${t.id}" th:text="${t.name}"></option>
+        </th:block>
+      </select>
+      </td>
     </tr>
     <tr>
       <td>IMG</td>

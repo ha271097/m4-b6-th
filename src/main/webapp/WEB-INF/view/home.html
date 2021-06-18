@@ -14,6 +14,7 @@
         <th>firstName</th>
         <th>lastName</th>
         <th>IMG</th>
+        <th>Type</th>
         <th>Edit</th>
         <th>Delete</th>
     </tr>
@@ -22,6 +23,7 @@
         <td th:text="${list.firstName}"></td>
         <td th:text="${list.lastName}"></td>
         <td><img th:href="@{i}" + ${c.img} ></td>
+        <td th:text="${list.type.getName}"></td>
         <td><a th:href="@{/customer/edit(id=${list.id})}">Edit</a></td>
         <td><a th:href="@{/customer/remove/(id=${list.id})}">Remove</a></td>
     </tr>

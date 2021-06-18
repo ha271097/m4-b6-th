@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+import repository.entity.TypeCustomer;
 import service.ICustomerService;
 import service.ITypeService;
 
-import java.lang.reflect.Type;
 import java.util.List;
 
 @Controller
@@ -27,8 +27,8 @@ public class CustomerController {
     @Autowired
     private ITypeService typeService;
 
-    @ModelAttribute("type")
-    public List<Type> typeCustomer(){
+    @ModelAttribute("types")
+    public List<TypeCustomer> typeCustomer(){
         return typeService.findAll();
     }
     @GetMapping("/home")

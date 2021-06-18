@@ -33,4 +33,12 @@ public class TypeCustomer {
     public void setName(String name) {
         this.name = name;
     }
+
+    @Override
+    public String toString() {
+        return "TypeCustomer{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }

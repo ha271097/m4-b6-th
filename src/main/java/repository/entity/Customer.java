@@ -18,6 +18,14 @@ public class Customer {
     public Customer() {
     }
 
+    public TypeCustomer getType() {
+        return type;
+    }
+
+    public void setType(TypeCustomer type) {
+        this.type = type;
+    }
+
     public String getImg() {
         return img;
     }
