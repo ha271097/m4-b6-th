@@ -11,13 +11,13 @@ public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotEmpty
-    @Size(min = 2, max = 50)
+
     private String firstName;
-    @NotEmpty
-    @Size(min = 2, max = 50)
+
+
     private String lastName;
     private String img;
+
     @ManyToOne
     private TypeCustomer type;
 

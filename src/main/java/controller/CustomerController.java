@@ -59,7 +59,7 @@ public class CustomerController {
     }
 
     @PostMapping("/create")
-    public String save(@Validated @ModelAttribute("c") CustomerUpload customerUpload, BindingResult bindingResult)  {
+    public ModelAndView save(@Validated @ModelAttribute("c") CustomerUpload customerUpload, BindingResult bindingResult)  {
         if (!bindingResult.hasFieldErrors()) {
             MultipartFile multipartFile = customerUpload.getImg();
             String fileName = multipartFile.getOriginalFilename();
@@ -74,9 +74,9 @@ public class CustomerController {
             customer.setLastName(customerUpload.getLastName());
             customer.setType(customerUpload.getType());
             customerService.saveOrUpdate(customer);
-            return "redirect:/customer/home";
+            return new ModelAndView("/home");
         }
-        return "redirect:/customer/create";
+        return new ModelAndView("/create");
     }
 
 
