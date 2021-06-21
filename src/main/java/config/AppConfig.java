@@ -133,7 +133,7 @@ public class AppConfig implements WebMvcConfigurer, ApplicationContextAware {
 
         return resolver;
     }
-    @Value("file-upload")
+    @Value("${file-upload}")
     private String fileUpload;
 
     // Cấu hình để sử dụng các file nguồn tĩnh (css, image, js..)

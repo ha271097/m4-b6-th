@@ -3,6 +3,8 @@ package repository.entity;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 
 public class CustomerUpload {
@@ -10,6 +12,8 @@ public class CustomerUpload {
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         private Long id;
+        @NotEmpty
+        @Size(min = 2, max = 50)
         private String firstName;
         private String lastName;
         private MultipartFile img;

@@ -22,7 +22,7 @@ config/AppWeb.java
  config.AppWeb
 config/AppConfig.java
  config.AppConfig
-repository/entity/CustomerUpload.java
- repository.entity.CustomerUpload
 controller/CustomerController.java
  controller.CustomerController
+repository/entity/CustomerUpload.java
+ repository.entity.CustomerUpload

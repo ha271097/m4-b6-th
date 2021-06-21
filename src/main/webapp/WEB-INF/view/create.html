@@ -9,11 +9,12 @@
   <h2>Create Customer</h2>
 </div>
 <div>
-  <form method="post">
+  <form method="post" th:object="${c}"  enctype="multipart/form-data">
   <table>
     <tr>
       <td>FirstName</td>
       <td><input th:field="${c.firstName}"></td>
+      <lable th:errors="${c.firstName}"></lable>
     </tr>
     <tr>
       <td>LastName</td>

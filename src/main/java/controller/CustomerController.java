@@ -2,6 +2,8 @@ package controller;
 
 import org.springframework.core.env.Environment;
 import org.springframework.util.FileCopyUtils;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.multipart.MultipartFile;
 import repository.entity.Customer;
@@ -30,7 +32,7 @@ public class CustomerController {
     @Autowired
     private ICustomerService customerService;
 
-    @Value("file-upload")
+    @Value("${file-upload}")
     private String fileUpload;
 
     @Autowired
@@ -57,21 +59,24 @@ public class CustomerController {
     }
 
     @PostMapping("/create")
-    public String save(CustomerUpload customerUpload){
-        MultipartFile multipartFile = customerUpload.getImg();
-        String fileName = multipartFile.getOriginalFilename();
-        try {
-            FileCopyUtils.copy(multipartFile.getBytes(), new File(fileUpload + fileName));
-        } catch (IOException e) {
-            e.printStackTrace();
+    public String save(@Validated @ModelAttribute("c") CustomerUpload customerUpload, BindingResult bindingResult)  {
+        if (!bindingResult.hasFieldErrors()) {
+            MultipartFile multipartFile = customerUpload.getImg();
+            String fileName = multipartFile.getOriginalFilename();
+            try {
+                FileCopyUtils.copy(multipartFile.getBytes(), new File(fileUpload + fileName));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            Customer customer = new Customer();
+            customer.setImg(fileName);
+            customer.setFirstName(customerUpload.getFirstName());
+            customer.setLastName(customerUpload.getLastName());
+            customer.setType(customerUpload.getType());
+            customerService.saveOrUpdate(customer);
+            return "redirect:/customer/home";
         }
-        Customer customer = new Customer();
-        customer.setImg(fileName);
-        customer.setFirstName(customerUpload.getFirstName());
-        customer.setLastName(customerUpload.getLastName());
-        customer.setType(customerUpload.getType());
-        customerService.saveOrUpdate(customer);
-        return "redirect:/customer/home";
+        return "redirect:/customer/create";
     }
 
 

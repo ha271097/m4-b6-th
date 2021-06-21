@@ -22,7 +22,8 @@
         <td th:text="${list.id}"></td>
         <td th:text="${list.firstName}"></td>
         <td th:text="${list.lastName}"></td>
-        <td><img th:href="@{i}" + ${c.img} ></td>
+        <td><img height="100px" th:src="@{'/i/' + ${list.img}}" /></td>
+
         <td th:text="${list.type.getName}"></td>
         <td><a th:href="@{/customer/edit(id=${list.id})}">Edit</a></td>
         <td><a th:href="@{/customer/remove/(id=${list.id})}">Remove</a></td>
