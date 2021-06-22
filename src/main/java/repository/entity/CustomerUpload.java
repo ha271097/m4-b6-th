@@ -2,6 +2,7 @@ package repository.entity;
 
 import org.springframework.web.multipart.MultipartFile;
 import javax.persistence.*;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 
@@ -16,6 +17,7 @@ public class CustomerUpload {
 
     @Size(min = 2, max = 50, message = "loi cmnr")
         private String lastName;
+    @Pattern(regexp = " " , message = "loi cmnnr")
         private MultipartFile img;
         @ManyToOne
         private TypeCustomer type;

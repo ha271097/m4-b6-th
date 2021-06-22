@@ -16,6 +16,7 @@ public class Customer {
 
 
     private String lastName;
+
     private String img;
 
     @ManyToOne
