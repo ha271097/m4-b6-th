@@ -1,16 +1,14 @@
 package config;
 
+import aop.Logger;
 import fometter.TypeFormatter;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.*;
 //import repository.customerRepository.CustomerRepository;
 //import repository.customerRepository.ICustomerRepository;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
@@ -47,6 +45,7 @@ import java.util.Properties;
 @ComponentScan("controller")
 @EnableJpaRepositories("repository")
 @PropertySource("classpath:file_upload.properties")
+@EnableAspectJAutoProxy
 public class AppConfig implements WebMvcConfigurer, ApplicationContextAware {
     private ApplicationContext applicationContext;
 
@@ -164,5 +163,10 @@ public class AppConfig implements WebMvcConfigurer, ApplicationContextAware {
     @Bean
     public ITypeService typeService(){
         return new TypeService();
+    }
+
+    @Bean
+    public Logger logger(){
+        return new Logger();
     }
 }

@@ -84,6 +84,7 @@ public class CustomerController {
     public ModelAndView showFromEdit(){
         ModelAndView mav = new ModelAndView("/edit");
         mav.addObject("c",new Customer());
+
         return mav;
     }
     @PostMapping("/edit")
