@@ -12,12 +12,12 @@ public class CustomerUpload {
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         private Long id;
 
-    @Size(min = 2, max = 50, message = "loi cmnr")
-        private String firstName;
+//    @Pattern(regexp = "^([a-zA-Z0-9_\\.\\-])+\\@(([a-zA-Z0-9\\-])+\\.)+([a-zA-Z0-9]{2,4})+$" , message = "loi cmnnr")
+
+    private String firstName;
 
     @Size(min = 2, max = 50, message = "loi cmnr")
         private String lastName;
-    @Pattern(regexp = " " , message = "loi cmnnr")
         private MultipartFile img;
         @ManyToOne
         private TypeCustomer type;

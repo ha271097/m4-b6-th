@@ -42,6 +42,12 @@ dependencies {
     compile group: 'org.aspectj', name: 'aspectjweaver', version: '1.9.5'
     compile group: 'org.springframework', name: 'spring-aop', version: '4.3.17.RELEASE'
 
+    //API
+    //web serivce
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.12.1'
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.1'
+
+
 }
 
 test {

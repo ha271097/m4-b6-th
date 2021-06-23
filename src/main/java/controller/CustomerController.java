@@ -73,7 +73,7 @@ public class CustomerController {
             customer.setLastName(customerUpload.getLastName());
             customer.setType(customerUpload.getType());
             customerService.saveOrUpdate(customer);
-            return new ModelAndView("/home");
+            return new ModelAndView("redirect:/customer/home");
         }
         return new ModelAndView("/create");
     }
