@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>AJAX</title>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script type="text/javascript">
+    function addType() {
+      //lay du lieu
+      let name = $('#name').val();
+      let newType = {
+        name: name
+      };
+      // goi ajax
+      $.ajax({
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        type: "POST",
+        data: JSON.stringify(newType),
+        //tên API
+        url: "/api/type/home",
+        //xử lý khi thành công
+        success: successHandler
+
+      });
+      //chặn sự kiện mặc định của thẻ
+      event.preventDefault();
+    }
+    function getType(newType) {
+      return `<tr><td>${newType.name}</td>
+              <td><button class="edit" onclick="formEdit()" th:href="${newType.id}">Edit</button></td>` +
+              `<td><a class="remove" href="${newType.id}">Remove</a></td></tr>`;
+    }
+    function successHandler() {
+      $.ajax({
+        type: "GET",
+        //tên API
+        url: "/api/type",
+        //xử lý khi thành công
+        success: function (data) {
+          // hien thi danh sach o day
+          let content = '    <tr>\n' +
+                  '        <td>Name</td>' +
+                  '        <td>Edit</td>' +
+                  '        <td>Remove</td>' +
+                  '    </tr>';
+          for (let i = 0; i < data.length; i++) {
+            content += getType(data[i]);
+          }
+          document.getElementById('listType').innerHTML = content;
+        }
+      });
+    }
+
+    $(document).ready(function () {
+      //sư kiện nào thực hiện Ajax
+      $('.remove').click(function (event) {
+        //lay du lieu
+        let t = $(this);
+        let typeID = t.attr("href");
+        // goi ajax
+        $.ajax({
+          type: "DELETE",
+          //tên API
+          url: "/api/type/"+ typeID,
+          //xử lý khi thành công
+          success: function (data) {
+            t.parent().parent().remove();
+          }
+        });
+        //chặn sự kiện mặc định của thẻ
+        event.preventDefault();
+      });
+    })
+
+    // function addType() {
+    //   //lay du lieu
+    //   let name = $('#name').val();
+    //   let newType = {
+    //     name: name
+    //   };
+    //   // goi ajax
+    //   $.ajax({
+    //     headers: {
+    //       'Accept': 'application/json',
+    //       'Content-Type': 'application/json'
+    //     },
+    //     type: "PUT",
+    //     data: JSON.stringify(newType),
+    //     //tên API
+    //     url: "/api/type/home",
+    //     //xử lý khi thành công
+    //     success: successHandler
+    //
+    //   });
+    //   //chặn sự kiện mặc định của thẻ
+    //   event.preventDefault();
+    // }
+  </script>
+</head>
+<body>
+<form method="post">
+  <table border="1">
+    <tr>
+      <td>FirstName</td>
+      </tr>
+    <tr th:object="${type}">
+      <td><input id="name" th:field="*{name}"></td>
+    </tr>
+  </table>
+  <button type="submit" value="Add" onclick="addType()">Add type</button>
+</form>
+
+<table id="listType" border="1" cellpadding="2px">
+  <tr>
+    <th>Name</th>
+    <th>Edit</th>
+    <th>Delete</th>
+  </tr>
+  <tr th:each="list: ${listType}" >
+    <td th:text="${list.name}"></td>
+    <td><button class="edit" onclick="formEdit()" th:href="${list.id}">Edit</button></td>
+    <td><a class="remove" th:href="${list.id}">Remove</a></td>
+  </tr>
+</table>
+<table id="editType">
+</table>
+</body>
+</html>
+<script>
+  // document.getElementById("edit").onclick = formEdit;
+  function  formEdit(id) {
+    let t = $(this);
+    id = t.attr("hreft")
+    let c = "";
+    c= "<td><input type='text' id='newName'></td>" +
+            "<td><input type='hidden' value='"id"'></td>"
+
+
+    return document.getElementById("editType").innerHTML= c;
+  }
+</script>

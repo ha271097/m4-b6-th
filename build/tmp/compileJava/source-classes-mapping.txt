@@ -2,8 +2,8 @@ service/ITypeService.java
  service.ITypeService
 repository/typerepo/TypeRepository.java
  repository.typerepo.TypeRepository
-controller/TypeCustomerController.java
- controller.TypeCustomerController
+controller/CustomerController.java
+ controller.CustomerController
 repository/ICustomerRepo.java
  repository.ICustomerRepo
 service/ex/HandleEx.java
@@ -30,5 +30,5 @@ config/AppWeb.java
  config.AppWeb
 config/AppConfig.java
  config.AppConfig
-controller/CustomerController.java
- controller.CustomerController
+controller/TypeCustomerController.java
+ controller.TypeCustomerController
