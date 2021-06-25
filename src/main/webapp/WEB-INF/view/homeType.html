@@ -6,12 +6,10 @@
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <script type="text/javascript">
     function addType() {
-      //lay du lieu
       let name = $('#name').val();
       let newType = {
         name: name
       };
-      // goi ajax
       $.ajax({
         headers: {
           'Accept': 'application/json',
@@ -25,7 +23,6 @@
         success: successHandler
 
       });
-      //chặn sự kiện mặc định của thẻ
       event.preventDefault();
     }
     function getType(newType) {
@@ -36,11 +33,8 @@
     function successHandler() {
       $.ajax({
         type: "GET",
-        //tên API
         url: "/api/type",
-        //xử lý khi thành công
         success: function (data) {
-          // hien thi danh sach o day
           let content = '    <tr>\n' +
                   '        <td>Name</td>' +
                   '        <td>Edit</td>' +
@@ -54,49 +48,21 @@
       });
     }
     $(document).ready(function () {
-      //sư kiện nào thực hiện Ajax
       $('.remove').click(function (event) {
         //lay du lieu
         let t = $(this);
         let typeID = t.attr("href");
-        // goi ajax
         $.ajax({
           type: "DELETE",
-          //tên API
           url: "/api/type/"+ typeID,
-          //xử lý khi thành công
           success: function (data) {
             t.parent().parent().remove();
           }
         });
-        //chặn sự kiện mặc định của thẻ
         event.preventDefault();
       });
     })
 
-    // function addType() {
-    //   //lay du lieu
-    //   let name = $('#name').val();
-    //   let newType = {
-    //     name: name
-    //   };
-    //   // goi ajax
-    //   $.ajax({
-    //     headers: {
-    //       'Accept': 'application/json',
-    //       'Content-Type': 'application/json'
-    //     },
-    //     type: "PUT",
-    //     data: JSON.stringify(newType),
-    //     //tên API
-    //     url: "/api/type/home",
-    //     //xử lý khi thành công
-    //     success: successHandler
-    //
-    //   });
-    //   //chặn sự kiện mặc định của thẻ
-    //   event.preventDefault();
-    // }
   </script>
 </head>
 <body>
@@ -120,10 +86,10 @@
   </tr>
   <tr th:each="list: ${listType}" >
     <td th:text="${list.name}"></td>
-    <td><button class="edit" onclick="formEdit()" th:href="${list.id}">Edit</button></td>
+    <td><button class="edit" id="id5" type="button" onclick="formEdit(this.value)" th:value="${list.id}">Edit</button></td>
     <td><a class="remove" th:href="${list.id}">Remove</a></td>
   </tr>
-</table>
+</table >
 <form>
 <table id="editType">
 </table>
@@ -132,44 +98,35 @@
 </html>
 <script>
 
-  function  formEdit() {
-    let t = $(this);
-    let id = t.attr("hreft")
+  function  formEdit(id) {
+    console.log(id)
     let c = "";
     c= "<tr><td>Name</td><td><input type='text' id='newName'></td>" +
         "<tr><td><input type='hidden' id='id' value='"+id+"' ></td>" +
-            "<tr><td><button type='button'  class='update'>Update</button> </td></tr>"
-
+            "<tr><td><button type='submit' onclick='updateNow()' class='update'>Update</button> </td></tr>"
     return document.getElementById("editType").innerHTML= c;
   }
 
-      $(document).ready(function () {
-      //sư kiện nào thực hiện Ajax
-      $('.update').click(function (event) {
-        //lay du lieu
-        let t = $(this);
-        let typeID = $('#id').val();
-        let name = $('#newName').val();
-        let newType = {
-          name: name
-        }
-
-        $.ajax({
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-          },
-          type: "PUT",
-          data: JSON.stringify(newType),
-          //tên API
-          url: "/api/type/" + typeID,
-          //xử lý khi thành công
-          success: successHandler
-        });
-        //chặn sự kiện mặc định của thẻ
-        event.preventDefault();
-      });
-    });
+     function updateNow() {
+       let id = $('#id').val();
+       let name = $('#newName').val();
+       let newType = {
+         id: id,
+         name : name
+       }
+       $.ajax({
+         headers: {
+           'Accept': 'application/json',
+           'Content-Type': 'application/json'
+         },
+         type: "PUT",
+         data: JSON.stringify(newType),
+         //tên API
+         url: "/api/type/" + id,
+         success: successHandler
+       });
+       event.preventDefault();
+     }
 
 
 </script>
