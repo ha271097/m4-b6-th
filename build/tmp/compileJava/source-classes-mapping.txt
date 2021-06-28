@@ -22,13 +22,13 @@ service/typeservice/TypeService.java
  service.typeservice.TypeService
 repository/ITypeRepo.java
  repository.ITypeRepo
-service/customerService/CustomerService.java
- service.customerService.CustomerService
+controller/TypeCustomerController.java
+ controller.TypeCustomerController
 service/ICustomerService.java
  service.ICustomerService
+service/customerService/CustomerService.java
+ service.customerService.CustomerService
 config/AppWeb.java
  config.AppWeb
 config/AppConfig.java
  config.AppConfig
-controller/TypeCustomerController.java
- controller.TypeCustomerController

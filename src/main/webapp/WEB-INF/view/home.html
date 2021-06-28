@@ -5,20 +5,21 @@
     <title>Home</title>
 </head>
 <body>
-<h2>List Customer</h2>
-<a href="/customer/create">Create Customer</a>
+<h2 th:text="#{h2}"></h2>
+<a href="/customer/create" th:text="#{title}"></a>
+Language: <a href="?lang=en">English</a> | <a href="?lang=vie">VIE</a>
 <!--<input type="text">-->
 
 
 <table border="1" cellpadding="2px">
     <tr>
         <th>ID</th>
-        <th>firstName</th>
-        <th>lastName</th>
+        <th th:text="#{name.f}"></th>
+        <th th:text="#{name.l}"></th>
         <th>IMG</th>
-        <th>Type</th>
-        <th>Edit</th>
-        <th>Delete</th>
+        <th th:text="#{typeC}"></th>
+        <th th:text="#{edit}"></th>
+        <th th:text="#{delete}"></th>
     </tr>
     <tr th:each="list: ${c}" th:object="${i}">
         <td th:text="${list.id}"></td>

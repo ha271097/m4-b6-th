@@ -19,11 +19,6 @@ public class CustomerService implements ICustomerService<Customer> {
 
     @Override
     public Customer findById(Long id) throws HandleEx {
-//        try {
-//            return (Customer) repository.findOne(id);
-//        }catch (Exception ex){
-//            throw new HandleEx();
-//        }
         Customer customer = (Customer) repository.findOne(id);
         if(customer==null){
             throw new HandleEx();
